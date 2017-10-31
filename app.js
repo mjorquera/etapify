@@ -3,7 +3,7 @@ var app = express();
 
 app.use(express.static('public'));
 
-// var cities = require('./routes/cities');
-// app.use('/cities', cities);
+var persons = require('./routes/persons');
+app.use('/persons', persons);
 
 module.exports = app;

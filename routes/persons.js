@@ -13,10 +13,27 @@ var urlencode = bodyParser.urlencoded({ extended: false});
 //     client.select((process.env.NODE_ENV || 'development').length);
 // }
 
+var persons = {
+    'Santino': 'Lobezno',
+    'Javi': 'Saltador',
+    'Lucas': 'Diestro'
+};
+
 var router = express.Router();
 
 router.route('/')
-    .get(function(request, response){
+    .get(function(req, res) {
+        res.json(Object.keys(persons));
+    })
+    .post(urlencode, function(req, res) {
+        var newPerson = req.body;
+        if(!newPerson.name) {
+            res.sendStatus(400);
+            return false;
+        } else {
+            persons[newPerson.name] = newPerson.stage;
+            res.status(201).json(newPerson.name);
+        }
     });
 
     module.exports = router;

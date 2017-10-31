@@ -4,11 +4,16 @@
   "description": "Una gran aplicacion para llevar las etapas scout",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test.js app.js routes/* -w"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "materialize-css": "^0.100.2"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
   }
 }
