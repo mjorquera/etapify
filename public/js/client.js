@@ -27,30 +27,30 @@ $(function(){
         var content, person;
         for(var i in persons){
           person = persons[i];
-          content = '<a href="/persons/'+person+'">'+person+'</a>'; // + // example on how to serve static images
+          content = '<a href="/persons/'+person+'" class="collection-item">'+person+'</a>'; // + // example on how to serve static images
             // ' <a href="#" data-person="'+person+'">'+
             // '<img src="delete.png" width="15px"></a>';
-          list.push($('<li class="collection-item">', { html: content }));
+          list.push(content);
         }
     
         $('.person-list').append(list)
       }
     
     
-      $('.person-list').on('click', 'a[data-city]', function (event) {
-        if(!confirm('Are you sure ?')){
-          return false;
-        }
+      // $('.person-list').on('click', 'a[data-city]', function (event) {
+      //   if(!confirm('Are you sure ?')){
+      //     return false;
+      //   }
     
-        var target = $(event.currentTarget);
+      //   var target = $(event.currentTarget);
     
-        $.ajax({
-          type: 'DELETE',
-          url: '/cities/' + target.data('city')
-        }).done(function () {
-          target.parents('li').remove();
-        });
-      });
+      //   $.ajax({
+      //     type: 'DELETE',
+      //     url: '/cities/' + target.data('city')
+      //   }).done(function () {
+      //     target.parents('li').remove();
+      //   });
+      // });
     
     });
     
