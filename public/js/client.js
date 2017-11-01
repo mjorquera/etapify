@@ -26,7 +26,9 @@ $(function(){
     var content, person;
     for(var i in persons){
       person = persons[i];
-      content = '<li class="collection-item"><div>' + person + '<a href="#" data-person="' + person + '" class="secondary-content"><i class="material-icons">cancel</i></a> </div></li>';
+      content = '<li class="collection-item"><div><a href="/persons/' + person + '">' +
+              person + '</a><a href="#" data-person="' + person + 
+              '" class="secondary-content"><i class="material-icons">cancel</i></a> </div></li>';
       list.push(content);
     }
 

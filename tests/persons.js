@@ -67,16 +67,31 @@ describe('Create new person', () => {
 });
 
 describe('Get info of a person', () => {
+
+    before(() => {
+        client.hset('persons','Banana','Lobezno');
+    });
+
+    after(() => {
+        client.flushdb();
+    });
+
     it('Returns a 200 status code', (done) => {
         request(app)
-            .get('/persons/Santino')
+            .get('/persons/Banana')
             .expect(200,done);
     });
     
     it('Returns a html content', (done) => {
         request(app)
-            .get('/persons/Santino')
+            .get('/persons/Banana')
             .expect('Content-Type',/html/,done);
+    });
+
+    it('Returns information for thhe given person', (done) => {
+        request(app)
+            .get('/persons/Banana')
+            .expect(/Lobezno/,done);
     });
 });
 

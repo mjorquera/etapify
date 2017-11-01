@@ -37,7 +37,14 @@ router.route('/')
 
 router.route('/:name')
     .get(function(req, res){
-        res.send('OK');
+        client.hget('persons', req.params.name, function(error, stage){
+            if (error) throw error;
+            res.render('person.ejs', { person: {
+                name: req.params.name,
+                stage: stage
+                }
+            });
+        });
     })
     .delete(function(req, res){
         client.hdel('persons',req.params.name, function(error){
