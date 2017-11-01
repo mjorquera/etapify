@@ -1,6 +1,12 @@
 var request = require('supertest');
 var app = require('./../app');
 
+var redis = require('redis');
+var client = redis.createClient();
+
+client.select('test'.length);
+client.flushdb();
+
 describe('Request to the root path', () => {
     
     it('Returns a 200 status code', (done) => {
@@ -33,7 +39,7 @@ describe('Listing persons', () => {
     it('Returns an initial list of persons', (done) => {
         request(app)
             .get('/persons')
-            .expect(JSON.stringify(["Santino","Javi","Lucas"]),done);        
+            .expect(JSON.stringify([]),done);        
     });
 });
 
@@ -57,5 +63,19 @@ describe('Create new person', () => {
             .post('/persons')
             .send('name=')
             .expect(400,done);
+    });
+});
+
+describe('Get info of a person', () => {
+    it('Returns a 200 status code', (done) => {
+        request(app)
+            .get('/persons/Santino')
+            .expect(200,done);
+    });
+    
+    it('Returns a html content', (done) => {
+        request(app)
+            .get('/persons/Santino')
+            .expect('Content-Type',/html/,done);
     });
 });
