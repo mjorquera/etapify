@@ -33,15 +33,16 @@
                     <div class="row">
                         <form class="col s12">
                             <div class="row">
-                                <div class="input-field col s6">
+                                <div class="input-field col s12 m6">
                                     <i class="material-icons prefix">account_circle</i>
                                     <input placeholder="Pedrito" id="name" type="text" class="validate">
                                     <label for="name">Nombre</label>
                                 </div>
-                                <div class="input-field col s6">
-                                    <i class="material-icons prefix">bookmark</i>   
-                                    <input placeholder="Lobezno" id="Etapa" type="text" class="validate">
-                                    <label for="stage">Etapa</label>
+                                <div class="input-field col s12 m6">
+                                    <select id="stages">
+                                        <option value="" selected disabled>Selecciona Etapa</option>
+                                    </select>
+                                    <label for="stages">Etapa</label>
                                 </div>
                              </div>
                              <div class="row">
@@ -67,6 +68,14 @@
                 </div>
             </div>
         </main>
+        <footer class="page-footer  light-blue darken-4">
+            <div class="footer-copyright">
+              <div class="container">
+              © 2017 grey
+              <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+              </div>
+            </div>
+          </footer>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>

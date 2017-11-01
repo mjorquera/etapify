@@ -1,6 +1,7 @@
 $(function(){
     
-      $.get('/persons', appendToList);
+  $.get('/persons', appendToList);
+  $.get('/stages', appendStages);
     
     //   $('form').on('submit', function(event) {
     //     event.preventDefault();
@@ -22,19 +23,34 @@ $(function(){
     //     });
     //   });
     
-      function appendToList(persons) {
-        var list = [];
-        var content, person;
-        for(var i in persons){
-          person = persons[i];
-          content = '<a href="/persons/'+person+'" class="collection-item">'+person+'</a>'; // + // example on how to serve static images
-            // ' <a href="#" data-person="'+person+'">'+
-            // '<img src="delete.png" width="15px"></a>';
-          list.push(content);
-        }
-    
-        $('.person-list').append(list)
-      }
+  function appendToList(persons) {
+    var list = [];
+    var content, person;
+    for(var i in persons){
+      person = persons[i];
+      content = '<a href="/persons/'+person+'" class="collection-item">'+person+'</a>'; // + // example on how to serve static images
+        // ' <a href="#" data-person="'+person+'">'+
+        // '<img src="delete.png" width="15px"></a>';
+      list.push(content);
+    }
+
+    $('.person-list').append(list);
+  }
+
+  function appendStages(stages) {
+    var list = [];
+    var content, stage;
+    for(var i in stages){
+      stage = stages[i];
+      content = '<option value="' + stage + '">' + stage + '</option>';
+      list.push(content);
+    }
+
+    $('#stages').append(list);
+    $('#stages').material_select();
+  }
+
+
     
     
       // $('.person-list').on('click', 'a[data-city]', function (event) {
