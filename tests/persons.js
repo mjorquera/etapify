@@ -45,7 +45,7 @@ describe('Create new person', () => {
             .expect(201,done);
     });
 
-    it('Returns the city name', (done) => {
+    it('Returns the person name', (done) => {
         request(app)
             .post('/persons')
             .send('name=Santino&stage=Lobezno')

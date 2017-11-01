@@ -3,34 +3,30 @@ $(function(){
   $.get('/persons', appendToList);
   $.get('/stages', appendStages);
     
-    //   $('form').on('submit', function(event) {
-    //     event.preventDefault();
-    
-    //     var form = $(this);
-    //     var cityData = form.serialize();
-    
-    //     $('.alert').hide();
-    
-    //     $.ajax({
-    //       type: 'POST', url: '/cities', data: cityData
-    //     })
-    //     .error(function() {
-    //       $('.alert').show();
-    //     })
-    //     .success(function(cityName){
-    //       appendToList([cityName]);
-    //       form.trigger('reset');
-    //     });
-    //   });
+  $('form').on('submit', function(event) {
+    event.preventDefault();
+
+    var form = $(this);
+    var personData = form.serialize();
+
+    $.ajax({
+      type: 'POST', url: '/persons', data: personData
+    })
+    .done(function(personName){
+      appendToList([personName]);
+      form.trigger('reset');
+    })
+    .fail(function( jqXHR, textStatus, errorThrown) {
+      Materialize.toast(textStatus + " " + errorThrown, 3000, 'rounded');
+    });
+  });
     
   function appendToList(persons) {
     var list = [];
     var content, person;
     for(var i in persons){
       person = persons[i];
-      content = '<a href="/persons/'+person+'" class="collection-item">'+person+'</a>'; // + // example on how to serve static images
-        // ' <a href="#" data-person="'+person+'">'+
-        // '<img src="delete.png" width="15px"></a>';
+      content = '<a href="/persons/'+person+'" class="collection-item">'+person+'</a>';
       list.push(content);
     }
 
