@@ -26,7 +26,7 @@ $(function(){
     var content, person;
     for(var i in persons){
       person = persons[i];
-      content = '<a href="/persons/'+person+'" class="collection-item">'+person+'</a>';
+      content = '<li class="collection-item"><div>' + person + '<a href="#" data-person="' + person + '" class="secondary-content"><i class="material-icons">cancel</i></a> </div></li>';
       list.push(content);
     }
 
@@ -45,24 +45,21 @@ $(function(){
     $('#stages').append(list);
     $('#stages').material_select();
   }
+    
+  $('.person-list').on('click', 'a[data-person]', function (event) {
+    if(!confirm('Estas seguro ?')){
+      return false;
+    }
 
+    var target = $(event.currentTarget);
 
-    
-    
-      // $('.person-list').on('click', 'a[data-city]', function (event) {
-      //   if(!confirm('Are you sure ?')){
-      //     return false;
-      //   }
-    
-      //   var target = $(event.currentTarget);
-    
-      //   $.ajax({
-      //     type: 'DELETE',
-      //     url: '/cities/' + target.data('city')
-      //   }).done(function () {
-      //     target.parents('li').remove();
-      //   });
-      // });
+    $.ajax({
+      type: 'DELETE',
+      url: '/persons/' + target.data('person')
+    }).done(function () {
+      target.parents('li').remove();
+    });
+  });
     
     });
     

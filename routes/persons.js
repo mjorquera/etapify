@@ -38,6 +38,12 @@ router.route('/')
 router.route('/:name')
     .get(function(req, res){
         res.send('OK');
+    })
+    .delete(function(req, res){
+        client.hdel('persons',req.params.name, function(error){
+            if (error) throw error;
+            res.sendStatus(204);
+        });
     });
 
     module.exports = router;

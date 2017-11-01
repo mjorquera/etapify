@@ -79,3 +79,19 @@ describe('Get info of a person', () => {
             .expect('Content-Type',/html/,done);
     });
 });
+
+describe('Deleting persons', () => {
+    before(() => {
+        client.hset('persons','Banana','A tasty fruit');
+    });
+
+    after(() => {
+        client.flushdb();
+    });
+
+    it('Returns a 204 status code', (done) => {
+        request(app)
+            .delete('/persons/Banana')
+            .expect(204,done);
+    });
+});
