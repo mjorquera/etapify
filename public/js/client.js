@@ -44,8 +44,8 @@ $(function(){
       list.push(content);
     }
 
-    $('#stages').append(list);
-    $('#stages').material_select();
+    $('#stage').append(list);
+    $('#stage').material_select();
   }
     
   $('.person-list').on('click', 'a[data-person]', function (event) {
