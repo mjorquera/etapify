@@ -24,7 +24,7 @@ router.route('/')
     })
     .post(urlencode, function(req, res) {
         var newPerson = req.body;
-        if(!newPerson.name) {
+        if(!newPerson.name || !newPerson.stage) {
             res.sendStatus(400);
             return false;
         } else {

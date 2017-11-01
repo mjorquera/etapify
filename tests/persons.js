@@ -58,10 +58,10 @@ describe('Create new person', () => {
             .expect(/santino/i,done);
     });
 
-    it('Validates the name', (done) => {
+    it('Validates the name and stage', (done) => {
         request(app)
             .post('/persons')
-            .send('name=')
+            .send('name=&stage=')
             .expect(400,done);
     });
 });
