@@ -36,6 +36,21 @@ router.route('/')
     });
 
 router.route('/:name')
+    .delete(function(req, res){
+        client.hdel('persons',req.params.name, function(error){
+            if (error) throw error;
+            res.sendStatus(204);
+        });
+    })
+    .get(function(req, res){
+        client.hget('persons', req.params.name, function(error, stage){
+            if (error) throw error;
+            res.json({name: req.params.name,
+                        stage: stage});
+        });
+    });
+
+router.route('/detail/:name')
     .get(function(req, res){
         client.hget('persons', req.params.name, function(error, stage){
             if (error) throw error;
@@ -45,12 +60,6 @@ router.route('/:name')
                 img: "../img/" + stage.toLowerCase() + ".jpeg"
                 }
             });
-        });
-    })
-    .delete(function(req, res){
-        client.hdel('persons',req.params.name, function(error){
-            if (error) throw error;
-            res.sendStatus(204);
         });
     });
 

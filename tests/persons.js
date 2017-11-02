@@ -76,21 +76,50 @@ describe('Get info of a person', () => {
         client.flushdb();
     });
 
-    it('Returns a 200 status code', (done) => {
+    it('Get a 200 status code', (done) => {
         request(app)
             .get('/persons/Banana')
             .expect(200,done);
     });
-    
-    it('Returns a html content', (done) => {
+
+    it('Returns a json content', (done) => {
         request(app)
             .get('/persons/Banana')
-            .expect('Content-Type',/html/,done);
+            .expect('Content-Type',/json/,done);
     });
 
     it('Returns information for thhe given person', (done) => {
         request(app)
             .get('/persons/Banana')
+            .expect(/Lobezno/i,done);
+    });
+});
+
+describe('Get page detail of a person', () => {
+
+    before(() => {
+        client.hset('persons','Banana','Lobezno');
+    });
+
+    after(() => {
+        client.flushdb();
+    });
+
+    it('Returns a 200 status code', (done) => {
+        request(app)
+            .get('/persons/detail/Banana')
+            .expect(200,done);
+    });
+    
+    it('Returns a html content', (done) => {
+        request(app)
+            .get('/persons/detail/Banana')
+            .expect('Content-Type',/html/,done);
+    });
+
+    it('Returns information for thhe given person', (done) => {
+        request(app)
+            .get('/persons/detail/Banana')
             .expect(/Lobezno/,done);
     });
 });

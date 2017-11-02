@@ -25,14 +25,18 @@ $(function(){
     var list = [];
     var content, person;
     for(var i in persons){
-      person = persons[i];
-      content = '<li class="collection-item"><div><a href="/persons/' + person + '">' +
-              person + '</a><a href="#" data-person="' + person + 
-              '" class="secondary-content"><i class="material-icons">cancel</i></a> </div></li>';
-      list.push(content);
+      $.get('/persons/' + persons[i], function(data){
+        content = '<tr>' + 
+        '<td><a href="/persons/detail/' + data.name + '">' +  data.name + '</a></td>' +
+        '<td><div class="chip">' +
+        '<img src="img/' + data.stage + '.jpeg" alt="' + data.stage + '">' + data.stage +
+        '</div></td>' +
+        '<td><a href="#" data-person="' + data.name + '" class="secondary-content"><i class="material-icons">cancel</i></a></td>' +
+        '</tr>';
+        
+        $('.person-list').append(content);
+      });
     }
-
-    $('.person-list').append(list);
   }
 
   function appendStages(stages) {
@@ -59,9 +63,9 @@ $(function(){
       type: 'DELETE',
       url: '/persons/' + target.data('person')
     }).done(function () {
-      target.parents('li').remove();
+      target.parents('tr').remove();
     });
   });
     
-    });
+});
     
