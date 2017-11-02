@@ -41,7 +41,8 @@ router.route('/:name')
             if (error) throw error;
             res.render('person.ejs', { person: {
                 name: req.params.name,
-                stage: stage
+                stage: stage,
+                img: "../img/" + stage.toLowerCase() + ".jpeg"
                 }
             });
         });
