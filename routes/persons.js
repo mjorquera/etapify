@@ -57,7 +57,7 @@ router.route('/detail/:name')
             res.render('person.ejs', { person: {
                 name: req.params.name,
                 stage: stage,
-                img: "../img/" + stage.toLowerCase() + ".jpeg"
+                img: "../../img/" + stage.toLowerCase() + ".jpeg"
                 }
             });
         });
