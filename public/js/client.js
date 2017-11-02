@@ -29,7 +29,7 @@ $(function(){
         content = '<tr>' + 
         '<td><a href="/persons/detail/' + data.name + '">' +  data.name + '</a></td>' +
         '<td><div class="chip">' +
-        '<img src="img/' + data.stage + '.jpeg" alt="' + data.stage + '">' + data.stage +
+        '<img src="img/' + data.stage.toLowerCase() + '.jpeg" alt="' + data.stage + '">' + data.stage +
         '</div></td>' +
         '<td><a href="#" data-person="' + data.name + '" class="secondary-content"><i class="material-icons">cancel</i></a></td>' +
         '</tr>';
